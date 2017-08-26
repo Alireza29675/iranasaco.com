@@ -1,31 +1,27 @@
 import 'framesflow'
 import Robot from './Robot'
 
-var postprocessing = {};
+var postprocessing = {}
 var bokeh_params = {
-    znear       : 0.1,
-    zfar        : 10,
-
-    shaderFocus	: false,
-    fstop 		: 20,
-    maxblur 	: 2.0,
-    showFocus 	: false,
-    focalDepth 	: 1.4,
-    manualdof 	: false,
-    vignetting 	: false,
-    depthblur 	: true,
-
-    threshold 	: 0.5,
-    gain 		: 0.2,
-    bias 		: 2,
-    fringe		: 3,
-
-    focalLength	: 20,
-    noise		: true,
-    pentagon	: false,
-
-    dithering	: 0
-};
+    znear: 0.1,
+    zfar: 10,
+    shaderFocus: false,
+    fstop: 20,
+    maxblur: 2,
+    showFocus: false,
+    focalDepth: 1.4,
+    manualdof: false,
+    vignetting: false,
+    depthblur: true,
+    threshold : 0.5,
+    gain: 0.2,
+    bias: 2,
+    fringe: 0.5,
+    focalLength: 20,
+    noise: true,
+    pentagon: false,
+    dithering: 0
+}
 
 class RoboScene {
     constructor (query) {
@@ -39,11 +35,14 @@ class RoboScene {
     init () {
         // Creating Scene
         this.scene = new THREE.Scene()
-        this.scene.background = new THREE.Color( 0xffffff );
+        const fogColor = 0xf3f3f3
+        this.scene.background = new THREE.Color(fogColor)
+        this.scene.fog = new THREE.Fog(fogColor, 4, 50)
         // Creating Camera
         this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 1, 300)
-        this.camera.position.z = 14
-        this.camera.position.y = 4
+        this.camera.position.z = 13
+        this.camera.position.y = 1
+        this.camera.rotation.x = 0.25
         this.scene.add(this.camera)
         // Post Proccessing
         this.material_depth = new THREE.MeshDepthMaterial()
@@ -58,11 +57,11 @@ class RoboScene {
 		this.renderer.shadowMap.renderReverseSided = false;
         this.container.appendChild(this.renderer.domElement)
         // Creating Lights
-        this.light = new THREE.AmbientLight(0xffffff, 0.4)
-        this.scene.add(this.light)
-        this.pointLight = new THREE.PointLight(0xffffff, 0.9)
+        this.pointLight = new THREE.PointLight(0xffffff, 0.5) // Point
         this.pointLight.position.z = 10
         this.scene.add(this.pointLight)
+        var light = new THREE.HemisphereLight( 0xffffff, 0x000000, 1 );
+        this.scene.add( light );
         // Creating ground
         this.gridHelper = new THREE.GridHelper( 70, 45 );
         this.scene.add( this.gridHelper );
@@ -108,11 +107,16 @@ class RoboScene {
 	}
     onResize () {
         this.width = window.innerWidth
-        this.camera.aspect = this.width / this.height
+        this.camera.aspect = postprocessing.camera.aspect = this.width / this.height
         this.camera.updateProjectionMatrix()
+        postprocessing.camera.updateProjectionMatrix()
         this.renderer.setSize(this.width, this.height)
     }
+    changes () {
+        
+    }
     render (frame) {
+        this.changes()
         this.robot.render()
         this.renderer.clear()
 		this.scene.overrideMaterial = null;

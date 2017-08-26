@@ -38,8 +38,13 @@ class Robot {
         loadAllObjectsAndPutIn(this.parts).then(this.ready.bind(this))
     }
     ready () {
-        for (let partName in this.parts) this.mesh.add(this.parts[partName])
-        this.mesh.position.z = -4
+        for (let partName in this.parts) {
+            const part = this.parts[partName]
+            part.castShadow = true
+            part.receiveShadow = true
+            this.mesh.add(part)
+        }
+        this.mesh.position.z = 0
         this.scene.add(this.mesh)
     }
     render () {
