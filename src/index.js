@@ -1,3 +1,7 @@
-import './styles/index.sass'
+import './stylesheets/index.sass'
+import App from './scripts/App'
 
-console.log('ready')
+window.$ = (query) => document.querySelector(query)
+window.$$ = (query) => document.querySelectorAll(query)
+
+window.app = new App
