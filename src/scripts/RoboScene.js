@@ -1,4 +1,5 @@
 import 'framesflow'
+import Robot from './Robot'
 
 class RoboScene {
     constructor (query) {
@@ -23,6 +24,8 @@ class RoboScene {
         // Creating Lights
         this.light = new THREE.AmbientLight(0xffffff, 0.2)
         this.scene.add(this.light)
+        // Creating Robot
+        this.robot = new Robot(this)
     }
     onResize () {
         this.width = window.innerWidth
