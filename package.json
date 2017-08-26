@@ -1,0 +1,40 @@
+{
+  "name": "iranasaco.com",
+  "version": "1.0.0",
+  "description": "Iran Asaco's Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "http-server public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alireza29675/iranasaco.com.git"
+  },
+  "keywords": [
+    "IranAsaco",
+    "Industry",
+    "Robots"
+  ],
+  "author": "Alireza Sheikholmolouki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alireza29675/iranasaco.com/issues"
+  },
+  "homepage": "https://github.com/Alireza29675/iranasaco.com#readme",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "serve-favicon": "~2.3.2",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^7.0.0",
+    "css-loader": "^0.28.4",
+    "node-sass": "^4.5.3",
+    "sass": "^1.0.0-beta.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.1",
+    "webpack": "^3.5.5",
+    "http-server": "^0.10.0"
+  }
+}
