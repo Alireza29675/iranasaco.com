@@ -66,15 +66,25 @@ class Robot {
         this.parts.finger2.rotation.y = Math.PI
         this.parts.finger2.position.x = -0.4
 
-        // Hidden parameters
-        this._rotateY = 0
-        this._rotateX = 0
-        this._armAngle = 0
-        this._wristAngle = 0
-        this._grabAngle = 0
-
         // adding rest to scene
         this.scene.add(this.parts.rest)
+
+        // Hidden parameters
+        this.rotateY = -0.4
+        this.rotateX = 0
+        this.armAngle = 0
+        this.wristAngle = -Math.PI/8
+        this.grabAngle = Math.PI/6
+
+        // Set inital values
+        console.log(this._rotateY)
+        this.parts.rotator.rotation.y = this._rotateY
+        this.parts.arm1.rotation.x = this._rotateX
+        this.parts.arm2.rotation.x = this._armAngle
+        this.parts.wristbone.rotation.x = this._wristAngle
+        this.parts.finger.rotation.z = this._grabAngle
+        this.parts.finger2.rotation.z = this._grabAngle
+
         this.isReady = true
     }
     set rotateY (deg) {
@@ -123,14 +133,18 @@ class Robot {
     openGrab () {
         this.grabAngle = Math.PI/2
     }
+    toggleGrab () {
+        if (this.grabAngle > Math.PI/3) this.closeGrab()
+        else this.openGrab()
+    }
     render () {
         if (this.isReady) {
             this.parts.rotator.rotation.y += (this._rotateY - this.parts.rotator.rotation.y) / 30
             this.parts.arm1.rotation.x += (this._rotateX - this.parts.arm1.rotation.x) / 30
             this.parts.arm2.rotation.x += (this._armAngle - this.parts.arm2.rotation.x) / 30
             this.parts.wristbone.rotation.x += (this._wristAngle - this.parts.wristbone.rotation.x) / 30
-            this.parts.finger.rotation.z += (this._grabAngle - this.parts.finger.rotation.z) / 30
-            this.parts.finger2.rotation.z += (this._grabAngle - this.parts.finger2.rotation.z) / 30
+            this.parts.finger.rotation.z += (this._grabAngle - this.parts.finger.rotation.z) / 3
+            this.parts.finger2.rotation.z += (this._grabAngle - this.parts.finger2.rotation.z) / 3
         }
     }
 }
