@@ -16,7 +16,7 @@ var bokeh_params = {
     threshold : 0.5,
     gain: 0.2,
     bias: 2,
-    fringe: 0.5,
+    fringe: 3,
     focalLength: 20,
     noise: true,
     pentagon: false,
