@@ -47,13 +47,9 @@ class Robot {
         }
         // Combining things together
         this.parts.rest.add(this.parts.rotator)
+        this.parts.rotator.position.y = 3
         this.parts.rotator.add(this.parts.arm1)
-        this.parts.arm1.add(this.parts.arm2)
-        this.parts.arm2.add(this.parts.wrist)
-        this.parts.wrist.add(this.parts.wristbone)
-        this.parts.wristbone.add(this.parts.hand)
-        this.parts.hand.add(this.parts.finger1)
-        this.parts.hand.add(this.parts.finger2)
+        this.parts.arm1.position.y = 2
         // adding rest to scene
         this.scene.add(this.parts.rest)
         this.isReady = true
@@ -64,10 +60,17 @@ class Robot {
     get rotateY () {
         return this.parts.rotator.rotation.y
     }
+    set rotateX (deg) {
+        this.parts.arm1.rotation.x = deg
+    }
+    get rotateX () {
+        return this.parts.arm1.rotation.x
+    }
     render () {
         time++
         if (this.isReady) {
             this.rotateY += 0.01
+            this.rotateX += 0.01
         }
     }
 }
