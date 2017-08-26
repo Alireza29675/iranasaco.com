@@ -1,9 +1,17 @@
 const loader = new THREE.JSONLoader()
+
+const blackMaterial = new THREE.MeshLambertMaterial({ color: 0x111111 })
+const darkMaterial = new THREE.MeshLambertMaterial({ color: 0x999999 })
+const lightMaterial = new THREE.MeshLambertMaterial({ color: 0xeeeeee })
+
 const objectsNames = ['arm1', 'arm2', 'finger1', 'finger2', 'hand', 'rest', 'rotator', 'wrist', 'wristbone']
 const load = (objectName) => {
     const url = './assets/objects/' + objectName + '.json'
     return new Promise((resolve, reject, err) => {
         loader.load(url, (geometry, material) => {
+            material = lightMaterial
+            if (objectName.includes('finger')) material = blackMaterial
+            if (['wristbone', 'hand', 'arm1', 'rest'].includes(objectName)) material = darkMaterial
             resolve(new THREE.Mesh(geometry, material))
         })
     })
@@ -24,11 +32,18 @@ const loadAllObjectsAndPutIn = (objects) => {
 class Robot {
     constructor (roboScene) {
         this.roboScene = roboScene
-        this.objects = {}
-        loadAllObjectsAndPutIn(this.objects).then(this.ready.bind(this))
+        this.scene = roboScene.scene
+        this.mesh = new THREE.Object3D()
+        this.parts = {}
+        loadAllObjectsAndPutIn(this.parts).then(this.ready.bind(this))
     }
     ready () {
-        console.log(this.objects)
+        for (let partName in this.parts) this.mesh.add(this.parts[partName])
+        this.mesh.position.z = -4
+        this.scene.add(this.mesh)
+    }
+    render () {
+        // this.mesh.rotation.y += 0.001
     }
 }
 
