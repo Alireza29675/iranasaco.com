@@ -16,7 +16,7 @@ module.exports = {
       }
     }, {
       test: /\.sass$/,
-      loader: 'style-loader!css-loader!sass-loader'
+      loader: 'style-loader!css-loader?-url!sass-loader'
     }]
   }
 };
