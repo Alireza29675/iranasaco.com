@@ -4,7 +4,7 @@ import Navigation from './Navigation'
 class App {
     constructor () {
         this.roboScene = new RoboScene('body > header');
-        this.navigation = new Navigation('body > nav')
+        this.navigation = new Navigation('body > nav');
         this.robot = this.roboScene.robot;
         window.addEventListener('mousemove', this.onMouseMove.bind(this));
         window.addEventListener('mousedown', this.onMouseDown.bind(this));
