@@ -4,6 +4,7 @@
   "description": "Iran Asaco's Website",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack",
     "test": "http-server public"
   },
   "repository": {
