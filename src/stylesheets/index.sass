@@ -143,6 +143,7 @@ body
                     background: red
                     margin-top: 20px
                     overflow: hidden
+                    position: relative
 
                     img
                         height: 200px
@@ -151,3 +152,39 @@ body
                         flex-wrap: nowrap
                         display: flex
                         flex-direction: row
+
+                    .left-button, .right-button
+                        width: 50px
+                        height: 100px
+                        background: rgba(0, 0, 0, 0.6)
+                        position: absolute
+                        top: 50%
+                        transform: translateY(-50%)
+
+                        i
+                            position: absolute
+                            background: white
+                            width: 5px
+                            height: 30px
+                            top: 50%
+                            left: 18px
+                            transform: scale(0.7) rotate(45deg) translate(-50%, -50%)
+
+                            &:before
+                                content: ' '
+                                position: absolute
+                                background: white
+                                width: 6px
+                                height: 30px
+                                transform: rotate(90deg) translate(-12px, 12px)
+
+                    .left-button
+                        left: 0
+
+                        i
+                            top: 39%
+                            left: 16px
+                            transform: scale(0.7) rotate(45deg) translate(-50%, -50%) rotateZ(180deg)
+
+                    .right-button
+                        right: 0
