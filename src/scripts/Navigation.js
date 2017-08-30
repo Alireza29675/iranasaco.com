@@ -6,10 +6,11 @@ class Navigation {
         this.init()
     }
     init () {
+        this.highlight.style.width = 100 / this.items.length + '%';
         for (let item of this.items) item.onmouseover = this.onMouseOverItem.bind(this)
     }
     onMouseOverItem (e) {
-        this.highlight.style.left = Math.floor(e.pageX / window.innerWidth * 4) * 25 + '%'
+        this.highlight.style.left = Math.floor(e.pageX / window.innerWidth * this.items.length) * 100 / this.items.length + '%'
     }
 }
 
