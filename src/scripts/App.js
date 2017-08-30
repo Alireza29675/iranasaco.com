@@ -1,10 +1,12 @@
 import RoboScene from './RoboScene'
 import Navigation from './Navigation'
+import Gallery from './Gallery'
 
 class App {
     constructor () {
         this.roboScene = new RoboScene('body > header');
         this.navigation = new Navigation('body > nav');
+        this.gallery = new Gallery('body .gallery');
         this.robot = this.roboScene.robot;
         window.addEventListener('mousemove', this.onMouseMove.bind(this));
         window.addEventListener('mousedown', this.onMouseDown.bind(this));
