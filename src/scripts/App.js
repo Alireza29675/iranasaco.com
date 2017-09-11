@@ -8,17 +8,29 @@ class App {
         this.navigation = new Navigation('body > nav');
         this.gallery = new Gallery('body .gallery');
         this.robot = this.roboScene.robot;
-        window.addEventListener('mousemove', this.onMouseMove.bind(this));
-        window.addEventListener('touchmove', this.onMouseMove.bind(this));
+        // Moving robot listeners
+        window.addEventListener('mousemove', this.onMove.bind(this));
+        window.addEventListener('touchmove', this.onMove.bind(this));
+        // Grabbing listeners
         window.addEventListener('mousedown', this.onMouseDown.bind(this));
-        window.addEventListener('mouseup', this.onMouseUp.bind(this))
+        window.addEventListener('mouseup', this.onMouseUp.bind(this));
+        // Focusing listeners
+        $('body').addEventListener('mouseleave', () => this.focus = false);
+        $('body').addEventListener('mouseenter', () => this.focus = true);
+        window.addEventListener('touchend', () => this.focus = false);
+        window.addEventListener('touchstart', () => this.focus = true);
+        this.focusingTimeout = null;
+        this.autoRotationRenderer = window.framesFlow.render(this.autoRotate.bind(this));
     }
-    onMouseMove (event) {
-        try {
-            event = event.touches[0]
-        } catch (e) { /* nothing */ }
-        const xRate = event.pageX / window.innerWidth - 0.5;
-        const yRate = event.pageY / window.innerHeight - 0.5;
+    onMove (event) {
+        this.focus = true;
+        this.focused = true;
+        try { event = event.touches[0] } catch (e) { /* nothing */ }
+        this.moveRobotTo(event.pageX, event.pageY)
+    }
+    moveRobotTo (x, y) {
+        const xRate = x / window.innerWidth - 0.5;
+        const yRate = y / window.innerHeight - 0.5;
         this.robot.rotateY = xRate * Math.PI;
         this.robot.rotateX = yRate * Math.PI/3 - Math.PI/6;
         this.robot.armAngle = yRate * Math.PI/2 + 0.05;
@@ -29,6 +41,23 @@ class App {
     }
     onMouseUp () {
         this.robot.grabAngle = 0.5
+    }
+    set focus (isFocused) {
+        if (isFocused) {
+            console.log('UNSET');
+            clearTimeout(this.focusingTimeout);
+            this.autoRotationRenderer.pause()
+        } else {
+            console.log('SET');
+            this.focusingTimeout = setTimeout(() => { this.autoRotationRenderer.play() }, 2000)
+        }
+    }
+    autoRotate (frame) {
+        const theta = frame.index/250;
+        this.moveRobotTo(
+            (window.innerWidth + Math.cos(theta) * window.innerWidth)/2,
+            (window.innerHeight + Math.sin(theta) * window.innerHeight)/2
+        )
     }
 }
 
