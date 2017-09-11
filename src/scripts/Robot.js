@@ -38,12 +38,6 @@ class Robot {
         loadAllObjectsAndPutIn(this.parts).then(this.ready.bind(this))
     }
     ready () {
-        for (let partName in this.parts) {
-            const part = this.parts[partName];
-            part.castShadow = true;
-            part.receiveShadow = true
-        }
-
         // Combining things together
         this.parts.rest.add(this.parts.rotator);
         this.parts.rotator.position.y = 3;
