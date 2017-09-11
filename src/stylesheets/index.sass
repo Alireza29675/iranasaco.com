@@ -5,7 +5,7 @@
 
 ::selection
     background: black
-    color: white
+    color: #ffffff
 
 body
     margin: 0
@@ -126,7 +126,7 @@ body
             width: 900px
             margin: auto
             height: 520px
-            padding: 80px 0
+            padding: 55px 0
 
             & > img
                 float: left
@@ -151,6 +151,7 @@ body
                     line-height: 27px
 
             &[data-title='portfolio']
+                padding-top: 40px
 
                 & > img
                     margin-top: 80px
@@ -165,6 +166,7 @@ body
 
             &[data-title='teaching']
                 height: 750px
+                padding-top: 30px
 
             &[data-title='gallery']
                 height: 400px
@@ -253,6 +255,76 @@ body
                         right: 0
 
             &[data-title='contact']
+                padding-top: 20px
+                height: 650px
 
                 iframe
                     margin-top: 20px
+
+                .details
+                    margin-top: 40px
+
+                    p
+                        margin: 6px
+                        font-size: 16px
+
+                        a
+                            text-decoration: none
+                            color: #000
+
+                            &:hover
+                                color: #AAA
+
+                        i.fa
+                            margin-left: 10px
+
+                            &.fa-map-marker
+                                margin-right: 2px
+                                color: #ff0000
+
+                            &.fa-phone
+                                color: #33aae0
+
+                            &.fa-fax
+                                color: #1eaa6d
+
+                            &.fa-envelope
+                                color: #e6be1b
+
+    footer
+        background: #333
+        width: 100%
+        height: 100px
+        text-align: center
+        color: #d4d4d4
+        font-weight: 100
+        font-size: 13px
+        position: relative
+
+        span
+            display: block
+            position: absolute
+            top: 50%
+            left: 50%
+            margin-top: 2px
+            transform: translate(-50%, -50%)
+            cursor: default
+
+            i
+                color: #fff833
+
+            a
+                text-decoration: none
+                color: #FFF
+                cursor: pointer
+                display: inline-block
+                font-weight: normal
+                transition-duration: 0.2s
+                transform: translateZ(1px)
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.1), 0 0 5px rgba(255, 255, 255, 0.1), 0 0 5px rgba(255, 255, 255, 0.1)
+
+                &:hover
+                    opacity: 0.8
+                    color: yellow
+                    transform: translateZ(1px) translateY(-5px) scale(1.02)
+                    text-shadow: 0 10px 5px rgba(255, 255, 0, 0.1), 0 5px 5px rgba(255, 255, 0, 0.25), 0 2px 5px rgba(255, 255, 0, 0.8)
