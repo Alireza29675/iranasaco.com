@@ -9,10 +9,14 @@ class App {
         this.gallery = new Gallery('body .gallery');
         this.robot = this.roboScene.robot;
         window.addEventListener('mousemove', this.onMouseMove.bind(this));
+        window.addEventListener('touchmove', this.onMouseMove.bind(this));
         window.addEventListener('mousedown', this.onMouseDown.bind(this));
         window.addEventListener('mouseup', this.onMouseUp.bind(this))
     }
     onMouseMove (event) {
+        try {
+            event = event.touches[0]
+        } catch (e) { /* nothing */ }
         const xRate = event.pageX / window.innerWidth - 0.5;
         const yRate = event.pageY / window.innerHeight - 0.5;
         this.robot.rotateY = xRate * Math.PI;
