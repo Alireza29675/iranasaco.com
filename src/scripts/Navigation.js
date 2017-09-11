@@ -5,6 +5,7 @@ class Navigation {
         this.items = $$(query + ' li');
         this.scrollTarget = 0;
         this.scrollingRenderer = window.framesFlow.render(this.scrollingRendererMethod.bind(this));
+        window.addEventListener('mousewheel', () => this.scrollingRenderer.pause())
         this.init()
     }
     init () {
