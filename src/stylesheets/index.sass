@@ -71,6 +71,7 @@ body
                 top: 70%
                 text-align: center
                 white-space: normal
+                box-shadow: none
 
             @media (max-width: 460px)
                 background: linear-gradient(rgba(56, 56, 56, 0), rgba(56, 56, 56, 0.3), #383838, #383838)
@@ -101,7 +102,7 @@ body
             z-index: 1
             top: 0
             left: 0
-            width: 25%
+            width: 20%
             height: 100%
             background: #444
             opacity: 0
@@ -109,9 +110,7 @@ body
             background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0))
 
             @media (max-width: 650px)
-                background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0))
-                height: 25%
-                width: 100%
+                display: none
 
         &:hover .select-highlight
             opacity: 1
@@ -212,7 +211,6 @@ body
                     margin-right: 15px
 
             &[data-title='teaching']
-                height: 750px
                 padding-top: 30px
 
             &[data-title='gallery']
