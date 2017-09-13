@@ -30,7 +30,7 @@ class RoboScene {
         this.height = 600;
         this.init();
         window.addEventListener('resize', this.onResize.bind(this));
-        framesFlow.render(this.render.bind(this))
+        window.framesFlow.render(this.render.bind(this))
     }
     init () {
         // Creating Scene

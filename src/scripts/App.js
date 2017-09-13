@@ -44,11 +44,9 @@ class App {
     }
     set focus (isFocused) {
         if (isFocused) {
-            console.log('UNSET');
             clearTimeout(this.focusingTimeout);
             this.autoRotationRenderer.pause()
         } else {
-            console.log('SET');
             this.focusingTimeout = setTimeout(() => { this.autoRotationRenderer.play() }, 2000)
         }
     }

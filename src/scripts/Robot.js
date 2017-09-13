@@ -71,7 +71,6 @@ class Robot {
         this.grabAngle = Math.PI/6;
 
         // Set inital values
-        console.log(this._rotateY);
         this.parts.rotator.rotation.y = this._rotateY;
         this.parts.arm1.rotation.x = this._rotateX;
         this.parts.arm2.rotation.x = this._armAngle;

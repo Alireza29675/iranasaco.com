@@ -222,8 +222,21 @@ body
                     overflow: hidden
                     position: relative
 
+                    @media (max-width: 650px)
+                        height: 200px
+
                     .container
                         position: relative
+                        flex-wrap: nowrap
+                        display: flex
+                        flex-direction: row
+                        right: 0
+                        transition-duration: 0.5s
+
+                        @media (max-width: 650px)
+                            position: absolute
+                            width: 100%
+                            overflow-x: scroll
 
                     img
                         cursor: pointer
@@ -247,13 +260,6 @@ body
                             transition-duration: 0.1s
                             transform: scale(0.9)
 
-                    .container
-                        flex-wrap: nowrap
-                        display: flex
-                        flex-direction: row
-                        right: 0
-                        transition-duration: 0.5s
-
                     .left-button, .right-button
                         width: 50px
                         height: 100px
@@ -268,8 +274,11 @@ body
                             opacity: 0.8
                             transition-duration: 0.3s
 
-                            &:hover
-                                opacity: 1
+                        &:hover
+                            opacity: 1
+
+                        @media (max-width: 650px)
+                            display: none
 
                         i
                             position: absolute

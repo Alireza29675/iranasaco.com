@@ -4,14 +4,26 @@ const setBetween = (number, min, max) => {
     return Math.max(Math.min(number, max), min)
 };
 
+const imagesNames = ['ABB-Robot.png', 'DurrRobot.jpg', 'MotomanRobot.jpg', 'Rodip.jpg'];
+
 class Gallery {
     constructor (query) {
         this.element = $(query);
         this.leftButton = $(query + ' > .left-button');
         this.rightButton = $(query + ' > .right-button');
         this.container = $(query + ' > .container');
-        this.images = $$(query + ' > .container > img');
+        this.images = [];
         this.containerRight = 0;
+        this.loadImages()
+    }
+    loadImages () {
+        for (let name of imagesNames) {
+            const img = document.createElement('img');
+            img.src = './assets/images/gallery/' + name;
+            img.alt = 'اتوماسیون صنعتی آریانا';
+            this.images.push(img);
+            this.container.appendChild(img);
+        }
         this.slider = new Slider('body > .full-view-slider', this);
         this.init()
     }
@@ -25,7 +37,7 @@ class Gallery {
     }
     get width () {
         let sum = 0;
-        for (let image of this.images) sum += image.clientWidth
+        for (let image of this.images) sum += image.clientWidth;
         return sum
     }
     get maxRight () {
