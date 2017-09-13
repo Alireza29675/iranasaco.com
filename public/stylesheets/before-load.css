@@ -1,3 +1,6 @@
+body, html {
+    overflow-x: hidden;
+}
 body > * {
     opacity: 0;
     pointer-events: none;
