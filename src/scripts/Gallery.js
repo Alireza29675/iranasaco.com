@@ -4,7 +4,7 @@ const setBetween = (number, min, max) => {
     return Math.max(Math.min(number, max), min)
 };
 
-const imagesNames = ['ABB-Robot.png', 'DurrRobot.jpg', 'MotomanRobot.jpg', 'Rodip.jpg'];
+const imagesNames = window.galleryImages || ['ABB-Robot.png', 'DurrRobot.jpg', 'MotomanRobot.jpg', 'Rodip.jpg'];
 
 class Gallery {
     constructor (query) {
@@ -14,12 +14,11 @@ class Gallery {
         this.container = $(query + ' > .container');
         this.images = [];
         this.containerRight = 0;
-        this.loadImages()
     }
     loadImages () {
         for (let name of imagesNames) {
             const img = document.createElement('img');
-            img.src = './assets/images/gallery/' + name;
+            img.src = name.startsWith('http') ? name : './assets/images/gallery/' + name;
             img.alt = 'اتوماسیون صنعتی آریانا';
             this.images.push(img);
             this.container.appendChild(img);

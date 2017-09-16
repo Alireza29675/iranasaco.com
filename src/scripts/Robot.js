@@ -1,12 +1,14 @@
 const loader = new THREE.JSONLoader();
 
+const baseURL = window.templateDirectory || '.';
+
 const blackMaterial = new THREE.MeshPhongMaterial({ color: 0x000000, shininess: 0 });
 const darkMaterial = new THREE.MeshPhongMaterial({ color: 0x999999, shininess: 100 });
 const lightMaterial = new THREE.MeshPhongMaterial({ color: 0xeeeeee, shininess: 70 });
 
 const objectsNames = ['arm1', 'arm2', 'finger', 'hand', 'rest', 'rotator', 'wrist', 'wristbone'];
 const load = (objectName) => {
-    const url = './assets/objects/' + objectName + '.json';
+    const url = baseURL + '/assets/objects/' + objectName + '.json';
     return new Promise((resolve, reject, err) => {
         loader.load(url, (geometry, material) => {
             material = lightMaterial;

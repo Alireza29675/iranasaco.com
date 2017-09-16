@@ -57,6 +57,11 @@ class App {
             (window.innerHeight + Math.sin(theta) * window.innerHeight)/2
         )
     }
+    onLoad () {
+        $('body').classList.add('loading-finished');
+        setTimeout(() => { this.gallery.loadImages(); }, 300)
+        setTimeout(() => { $('body > .loading').remove() }, 1000)
+    }
 }
 
 export default App
